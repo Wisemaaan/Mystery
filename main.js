@@ -13,6 +13,37 @@ const mockUpStrand = () => {
   return newStrand;
 };
 
+const pAequorFactory = (specimenNum, dna) => {
+  return {
+    specimenNum: specimenNum,
+    dna: dna,
+    mutate() {
+      for (let i = 0; i < this.dna.length; i++) {
+        const currentBase = this.dna[i];
+        let newBase;
+
+        do {
+          newBase = returnRandBase();
+        } while (newBase === currentBase);
+
+        this.dna[i] = newBase;
+      }
+      return this.dna;
+    },
+  };
+};
+
+// Creating an object with random DNA
+const specimen = pAequorFactory(1, mockUpStrand());
+
+// Printing original version of DNA
+console.log("Original DNA:\n", specimen.dna);
+
+// Calling mutate function
+const mutatedDna = specimen.mutate();
+
+// Printing new version of DNA
+console.log("Mutated DNA:\n", mutatedDna);
 
 
 
